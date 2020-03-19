@@ -8,6 +8,9 @@ WEATHER = (
     ('R', 'Rainy'),
 )
 
+class (models.Model):
+    
+
 class Finch(models.Model):
     name = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
