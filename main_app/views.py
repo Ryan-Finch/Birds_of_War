@@ -39,12 +39,14 @@ def finches_index(request):
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
     sighting_form = SightingForm() 
-
+    armor_finch_doesnt_have = Armor.objects.exclude(id__in = finch.armor.all().values_list('id'))
     return render(request, 'finches/detail.html', {
         'finch': finch,
         'sighting_form': sighting_form
         })
-
+def assoc_armor(request, finch_id, armor_id):
+    Finch.objects.get(id=finch_id).armor.add(armor_id)
+    return redirect('detial', finch_id=finch_id)
 # Class for Armor
 
 class ArmorCreate(CreateView):

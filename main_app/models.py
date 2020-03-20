@@ -9,12 +9,23 @@ WEATHER = (
     ('R', 'Rainy'),
 )
 
+
+class Armor(models.Model):
+    style = models.CharField(max_length=50)
+    material = models.CharField(max_length=25)
+
+    def __str__(self):
+        return f"{self.finch.name} is ready for war in his {self.material}{self.style}"
+
+    def get_absolute_url(self):
+        return reverse('armor_detail', kwargs={'pk': self.id})
+
 class Finch(models.Model):
     name = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     age = models.IntegerField()
-
+    armor = models.ManyToManyField(Armor)
     def __str__(self):
         return self.name
     
@@ -26,16 +37,6 @@ class Finch(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'finch_id': self.id})
-
-class Armor(models.Model):
-    style = models.CharField(max_length=50)
-    material = models.CharField(max_length=25)
-
-    def __str__(self):
-        return f"{self.finch.name} is ready for war in his {self.material}{self.style}"
-
-    def get_absolute_url(self):
-        return reverse('armor_detail', kwargs={'pk': self.id})
 
 # class Weapon(models.Model):
 #     style = models.CharField(max_length=50)
