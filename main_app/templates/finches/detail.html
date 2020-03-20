@@ -28,6 +28,12 @@
         {{sighting_form.as_p}}
         <input type="submit" class="btn" value="Add Sighting">
       </form>
+      <br>
+      {%if finch.recent_sighting%}
+        <div class="card-panel teal-text center-align" >{{finch.name}} has been sighted recently, be careful</div>
+      {%else%}
+        <div class="card-panel teal-text center-align">{{finch.name}} has not been seen recently</div>
+      {%endif%}
       <table class="striped">
         <thead>
           <tr><th>Sighting Date</th><th>Weather</th></tr>

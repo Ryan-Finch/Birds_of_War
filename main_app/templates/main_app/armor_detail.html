@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<h1>Armor Detail</h1>
+
+<div class="row">
+    <div class="col s6 col-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{armor.style}}</span>
+                <p>Material: {{armor.material}}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'armor_update' armor.id%}">Change Armor</a>
+                <a href="{%url 'armor_delete' armor.id%}">Smelt Armor Down</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

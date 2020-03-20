@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<h1>Armor List</h1>
+
+{%for armor in armor_list%}
+<a href="{%url 'armor_detail' armor.id%}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ armor.style}}</span>
+            <p>Material: {{armor.material}}</p>
+        </div>
+    </div>
+</a>
+{%endfor%}
+{%endblock%}

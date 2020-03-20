@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import CreateView, UpdateView, DeleteView
-from .models import Finch
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+from .models import Finch, Armor
 from .forms import SightingForm
 # Create your views here.
 
@@ -26,7 +27,7 @@ def add_sighting(request, finch_id):
     return redirect('detail', finch_id=finch_id)
 
 def home(request):
-    return HttpResponse('<h1>Hello Finch People</h1>')
+    return render(request, 'home.html')
 
 def about(request):
    return render(request, 'about.html')
@@ -43,3 +44,24 @@ def finches_detail(request, finch_id):
         'finch': finch,
         'sighting_form': sighting_form
         })
+
+# Class for Armor
+
+class ArmorCreate(CreateView):
+    model = Armor
+    fields = '__all__'
+
+class ArmorList(ListView):
+    model = Armor
+    
+
+class ArmorDetail(DetailView):
+    model = Armor
+
+class ArmorUpdate(UpdateView):
+    model = Armor
+    fields = ['style', 'material']
+
+class ArmorDelete(DeleteView):
+    model = Armor
+    success_url = '/armor/'
