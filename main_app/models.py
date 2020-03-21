@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from django.contrib.auth.models import User
 # Create your models here.
 
 WEATHER = (
@@ -15,7 +16,7 @@ class Armor(models.Model):
     material = models.CharField(max_length=25)
 
     def __str__(self):
-        return f"{self.finch.name} is ready for war in his {self.material}{self.style}"
+        return f"Ready for war with {self.material}{self.style}"
 
     def get_absolute_url(self):
         return reverse('armor_detail', kwargs={'pk': self.id})
@@ -26,6 +27,7 @@ class Finch(models.Model):
     description = models.TextField(max_length=250)
     age = models.IntegerField()
     armor = models.ManyToManyField(Armor)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
     
@@ -60,3 +62,10 @@ class Sighting(models.Model):
 
     class Meta:
         ordering = ['-date']
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    finch = models.ForeignKey(Finch, on_delete=models.CASCADE)
+
+    def __Str_(self):
+        return f'Photo for finch_id:{self.finch_id} @{self.url}'
