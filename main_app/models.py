@@ -32,20 +32,17 @@ class Finch(models.Model):
         return self.name
     
     def recent_sighting(self):
-        print(self.sighting_set.filter(date=date.today()).count())
-        print(self.sighting_set.filter())
-        # return self.sighting_set.filter(date=date.today()) == self.sighting_set.filter('date').value()
-        pass
+        sighting = self.sighting_set.filter(date=date.today()).count()
+        
+        if sighting == 1:
+            return sighting
+        elif sighting > 1:
+            return sighting
+    
+    
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'finch_id': self.id})
-
-# class Weapon(models.Model):
-#     style = models.CharField(max_length=50)
-#     material = models.CharField(max_length=25)
-
-#     def __str__(self):
-#         return f"{self.finch.name} is ready for war in his {self.material}{self.style}"
 
 class Sighting(models.Model):
     date = models.DateField('sighting date')

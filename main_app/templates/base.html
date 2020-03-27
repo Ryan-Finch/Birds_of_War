@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Finch Collector</title>
+  <title>Birds of War</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
@@ -16,15 +16,15 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Me Collector</a></li>
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Birds of War</a></li>
         </ul>
         <ul class="right">
           <li><a href="{%url 'about'%}">About</a></li>
           {% if user.is_authenticated %}
             <li><a href="{%url 'armor_form'%}">Add Armor</a></li>
             <li><a href="{%url 'armor_list'%}">View All Armor</a></li>
-            <li><a href="{%url 'finch_create' %}">Submit a New Finch</a></li>
-            <li><a href="{%url 'index'%}">View All My Finches</a></li>
+            <li><a href="{%url 'finch_create' %}">Submit a New Bird</a></li>
+            <li><a href="{%url 'index'%}">View All My Birds</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {%else%}
             <li><a href="{%url 'login'%}">Log In</a></li>
@@ -39,7 +39,7 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 1985 Finch Collector &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; 2020 Birds of War &nbsp;</div>
   </footer>
 </body>
 </html>
