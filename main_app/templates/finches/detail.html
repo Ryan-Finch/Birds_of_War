@@ -80,6 +80,12 @@
             {{armor.material}} {{armor.style}}
           </span>
         </div>
+        <div class="card-action">
+          <form action="{%url 'remove_armor' finch.id armor.id%}">
+            {%csrf_token%}
+            <button class="btn" type="submit">Remove Armor</button>
+          </form>
+        </div>
       </div>
         {%endfor%}
       {%else%}

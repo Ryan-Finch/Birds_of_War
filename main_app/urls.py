@@ -11,6 +11,7 @@ urlpatterns=[
     path('finches/<int:pk>/delete/', views.FinchDelete.as_view(), name='finch_delete'),
     path('finches/<int:finch_id>/add_feeding/', views.add_sighting, name ='add_sighting'),
     path('finches/<int:finch_id>/<int:armor_id>/', views.assoc_armor, name='assoc_armor'),
+    path('finches/<int:finch_id>/<int:armor_id>/remove', views.remove_armor, name='remove_armor'),
     path('finches/<int:finch_id>/add_photo/', views.add_photo, name='add_photo'),
     path('armor/', views.ArmorList.as_view(), name='armor_list'),
     path('armor/create/', views.ArmorCreate.as_view(), name='armor_form'),

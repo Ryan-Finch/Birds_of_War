@@ -15,7 +15,7 @@ import boto3
 S3_BASE_URL = 'https://s3-us-east-2.amazonaws.com/'
 BUCKET = 'catcollector02'
 
-class FinchCreate(CreateView):
+class FinchCreate(LoginRequiredMixin, CreateView):
     model = Finch
     fields = ['name', 'species', 'description', 'age']
 
@@ -23,11 +23,11 @@ class FinchCreate(CreateView):
         form.instance.user= self.request.user
         return super().form_valid(form)
 
-class FinchUpdate(UpdateView):
+class FinchUpdate(LoginRequiredMixin,UpdateView):
     model = Finch
     fields = ['species','description','age']
 
-class FinchDelete(DeleteView):
+class FinchDelete(LoginRequiredMixin,DeleteView):
     model = Finch
     success_url = '/finches/'
 
@@ -91,23 +91,29 @@ def finches_detail(request, finch_id):
 def assoc_armor(request, finch_id, armor_id):
     Finch.objects.get(id=finch_id).armor.add(armor_id)
     return redirect('detail', finch_id=finch_id)
+
+
+def remove_armor(request, finch_id, armor_id):
+    Finch.objects.get(id=finch_id).armor.remove(armor_id)
+    return redirect('detail', finch_id=finch_id)
+
 # Class for Armor
 
-class ArmorCreate(CreateView):
+class ArmorCreate(LoginRequiredMixin,CreateView):
     model = Armor
     fields = '__all__'
 
-class ArmorList(ListView):
+class ArmorList(LoginRequiredMixin,ListView):
     model = Armor
     
 
-class ArmorDetail(DetailView):
+class ArmorDetail(LoginRequiredMixin,DetailView):
     model = Armor
 
-class ArmorUpdate(UpdateView):
+class ArmorUpdate(LoginRequiredMixin,UpdateView):
     model = Armor
     fields = ['style', 'material']
 
-class ArmorDelete(DeleteView):
+class ArmorDelete(LoginRequiredMixin,DeleteView):
     model = Armor
     success_url = '/armor/'
